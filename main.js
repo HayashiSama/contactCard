@@ -13,6 +13,18 @@ $(document).ready(function()
 				return false;
 			}
 		}
+
+		if($('#first').val()=="")
+		{
+			$('#error').text("Missing First Name");
+			console.log("Name must be filled in");
+			return false;
+		}
+		if($('#last').val()=="")
+		{
+			$('#error').text("Missing Last Name");
+			return false;
+		}
 		
 		$('body').append(
 		"<div  class=\"card\" data-alt=\"" + $('#des').val() +
@@ -28,7 +40,6 @@ $(document).ready(function()
 			var temp = $(this).children('p').text();
 
 			$(this).children('p').text( $(this).attr("data-alt"));
-			console.log("data-alt -" + $(this).attr("data-alt") + " to <p> -" + $(this).children('p').text());
 			$(this).attr("data-alt", temp);
 			$(this).children('h1').toggle();
 			$(this).children('button').toggle();
@@ -41,6 +52,7 @@ $(document).ready(function()
                 e.stopPropagation();
 		})
 		idtable.push($('#first').val() + $('#last').val());
+		$('#error').text("");
 		return false;
 	
 	})
